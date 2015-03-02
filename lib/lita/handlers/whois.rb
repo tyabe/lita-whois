@@ -4,6 +4,7 @@ module Lita
       route(
         /^whois\s(<.+\|)*(?<domain>\S+[^>])(>|)$/,
         :whois_domain,
+        command: true,
         help: {
           'whois example.com' => 'Get the WHOIS info for a domain'
         }
@@ -12,6 +13,7 @@ module Lita
       route(
         /^whois\s.(\w+)$/,
         :whois_tld,
+        command: true,
         help: {
           'whois .io' => 'Get the WHOIS info for a TLD'
         }
@@ -20,6 +22,7 @@ module Lita
       route(
         /^whois\s(.+)$/,
         :whois_ip,
+        command: true,
         help: {
           'whois 8.8.8.8' => 'Get the WHOIS info for an IPv4 or IPv6 address'
         }
