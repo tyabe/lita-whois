@@ -2,7 +2,7 @@ module Lita
   module Handlers
     class Whois < Handler
       route(
-        /^whois\s(\w+).(\w+)$/,
+        /^whois\s(<.+\|)*(?<domain>\S+[^>])(>|)$/,
         :whois_domain,
         help: {
           'whois example.com' => 'Get the WHOIS info for a domain'
@@ -26,8 +26,7 @@ module Lita
       )
 
       def whois_domain(response)
-        response.reply(lookup("#{response.matches[0][0]}." \
-                              "#{response.matches[0][1]}"))
+        response.reply(lookup("#{response.match_data['domain']}"))
       end
 
       def whois_tld(response)
